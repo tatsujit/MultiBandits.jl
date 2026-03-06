@@ -1,0 +1,64 @@
+   Resolving package versions...
+  No Changes to `~/repos/github.com/tatsujit/MultiBandits/docs/Project.toml`
+  No Changes to `~/repos/github.com/tatsujit/MultiBandits/docs/Manifest.toml`
+[ Info: SetupBuildDirectory: setting up build directory.
+[ Info: Doctest: running doctests.
+[ Info: ExpandTemplates: expanding markdown templates.
+[ Info: CrossReferences: building cross-references.
+[ Info: CheckDocument: running document checks.
+┌ Error: 24 docstrings not included in the manual:
+│ 
+│     MultiBandits.MultiBandits
+│     MultiBandits.cumulative_rewards :: Tuple{Vector{Float64}}
+│     MultiBandits.algo_params_default_vals :: Tuple{CognitiveEstimator}
+│     MultiBandits.bool_to_float :: Tuple{Number}
+│     MultiBandits.beta_b :: Tuple{Any, Any}
+│     MultiBandits.calculate_action_values! :: Tuple{STEP}
+│     MultiBandits.step_linear :: Tuple{Real, Real}
+│     Base.show :: Tuple{IO, MIME{Symbol("text/plain")}, CognitiveEstimator}
+│     Base.show :: Tuple{IO, MIME{Symbol("text/plain")}, EmpiricalReward}
+│     Base.show :: Tuple{IO, MIME{Symbol("text/plain")}, UCB1}
+│     MultiBandits.average_rewards :: Tuple{Vector{Float64}}
+│     MultiBandits.mean :: Tuple{Environment}
+│     MultiBandits.action_moving_averages :: Tuple{Vector{Int64}, Int64, Int64}
+│     MultiBandits.normalized_logistic :: Union{Tuple{Float64}, Tuple{Float64, Float64}}
+│     MultiBandits.average_reward :: Tuple{Vector{System}, Int64}
+│     MultiBandits.find_optimal :: Tuple{Vector{Float64}}
+│     MultiBandits.beta_a :: Tuple{Any, Any}
+│     MultiBandits.@ic0 :: Tuple{}
+│     MultiBandits.count_params :: NTuple{11, Float64}
+│     MultiBandits.parameters :: Tuple{CognitiveEstimator}
+│     MultiBandits.normalized_rs_values :: Tuple{RS}
+│     Base.argmax :: Tuple{Vector{Float64}}
+│     MultiBandits.toString :: Tuple{EmpiricalReward}
+│     MultiBandits.toString :: Tuple{UCB1}
+│ 
+│ These are docstrings in the checked modules (configured with the modules keyword)
+│ that are not included in canonical @docs or @autodocs blocks.
+└ @ Documenter ~/.julia/packages/Documenter/AXNMp/src/utilities/utilities.jl:47
+[ Info: Populate: populating indices.
+ERROR: LoadError: `makedocs` encountered an error [:missing_docs] -- terminating build before rendering.
+Stacktrace:
+  [1] error(s::String)
+    @ Base ./error.jl:35
+  [2] runner(::Type{Documenter.Builder.RenderDocument}, doc::Documenter.Document)
+    @ Documenter ~/.julia/packages/Documenter/AXNMp/src/builder_pipeline.jl:259
+  [3] dispatch(::Type{Documenter.Builder.DocumentPipeline}, x::Documenter.Document)
+    @ Documenter.Selectors ~/.julia/packages/Documenter/AXNMp/src/utilities/Selectors.jl:170
+  [4] #90
+    @ ~/.julia/packages/Documenter/AXNMp/src/makedocs.jl:283 [inlined]
+  [5] withenv(::Documenter.var"#90#92"{Documenter.Document}, ::Pair{String, Nothing}, ::Vararg{Pair{String, Nothing}})
+    @ Base ./env.jl:257
+  [6] #89
+    @ ~/.julia/packages/Documenter/AXNMp/src/makedocs.jl:282 [inlined]
+  [7] cd(f::Documenter.var"#89#91"{Documenter.Document}, dir::String)
+    @ Base.Filesystem ./file.jl:112
+  [8] #makedocs#88
+    @ ~/.julia/packages/Documenter/AXNMp/src/makedocs.jl:281 [inlined]
+  [9] top-level scope
+    @ ~/repos/github.com/tatsujit/MultiBandits/docs/make.jl:6
+ [10] include(fname::String)
+    @ Base.MainInclude ./client.jl:494
+ [11] top-level scope
+    @ none:1
+in expression starting at /home/tatsujit/repos/github.com/tatsujit/MultiBandits/docs/make.jl:6

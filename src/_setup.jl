@@ -1,0 +1,10 @@
+include(srcdir("_utils.jl"))
+include(srcdir("_core.jl"))
+# include("plot.jl")
+
+# include(path * "evaluation.jl")
+# include(path * "heatmap.jl")
+# include(path * "plot.jl")
+# include(path * "parameter-estimation.jl")
+# include("estimate_parameters_mle.jl")
+# include("plot.jl")

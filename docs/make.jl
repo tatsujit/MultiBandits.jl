@@ -14,6 +14,14 @@ makedocs(;
     ),
     pages=[
         "Home" => "index.md",
+        "API リファレンス" => [
+            "推定器 (Estimators)" => "api/estimators.md",
+            "方策 (Policies)" => "api/policies.md",
+            "環境 (Environments)" => "api/environments.md",
+            "システム (System)" => "api/system.md",
+            "評価 (Evaluation)" => "api/evaluation.md",
+            "内部ユーティリティ" => "api/internals.md",
+        ],
     ],
 )
 
