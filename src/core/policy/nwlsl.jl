@@ -1,14 +1,8 @@
-"""
-    RandomResponding <: AbstractPolicy
+# noisy win-stay-lose-shift policy
 
-ランダム行動選択方策。均等確率またはカスタム確率ベクトルで行動を選択する。
-`EmptyEstimator` と組み合わせて使用する。
-
-# コンストラクタ
-- `RandomResponding(n_arms::Int)` — 均等確率 (1/n_arms)
-- `RandomResponding(probs::Vector{<:Real})` — カスタム確率ベクトル
-"""
-struct RandomResponding <: AbstractPolicy
+struct NoisyWinStayLoseShift <: AbstractPolicy
+    # TODO: 直近の選択の履歴を残さなければいけない
+    # 一般的には選択の履歴を持つ必要あり
     probs::Vector{Float64}
     function RandomResponding(n_arms::Int) # 腕の数だけ与えられたら一様確率で選択
         return new(ones(Float64, n_arms) ./ n_arms)
@@ -23,7 +17,9 @@ function selection_probabilities(policy::RandomResponding, estimator::EmptyEstim
     return policy.probs
 end
 
-# function select_action(policy::RandomResponding, estimator::AbstractActionValueEstimator; rng::AbstractRNG=Random.default_rng())
+"""
+    Noisy Win-Stay-Lose-Shift 方策では、直近の選択の履歴を持つ必要がある
+"""
 function select_action(policy::RandomResponding, estimator::EmptyEstimator; rng::AbstractRNG=Random.default_rng())
     n_arms = length(policy.probs)
     return sample(rng, 1:n_arms, Weights(policy.probs))

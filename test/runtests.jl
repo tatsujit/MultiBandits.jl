@@ -1,14 +1,15 @@
 using MultiBandits
+using Random
 using Test
 
 println("Starting tests")
 ti = time()
 
 @testset "MultiBandits.jl" begin
-    # include("test_estimators.jl")
-    # include("test_system.jl")
-    # include("test_selection_probabilities.jl")
-    # include("test_evaluation.jl")
+    include("test_estimators.jl")
+    include("test_system.jl")
+    include("test_selection_probabilities.jl")
+    include("test_evaluation.jl")
 end
 
 ti = time() - ti

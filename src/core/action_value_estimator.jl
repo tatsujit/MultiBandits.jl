@@ -5,25 +5,8 @@
 - `n_arms::Int` — 腕の数
 - `W::Vector{Float64}` — 行動選択に使用する行動価値ベクトル
 """
-abstract type AbstractEstimator
-end
+abstract type AbstractEstimator end
 
-"""
-    EmptyEstimator <: AbstractEstimator
-
-何も推定しないプレースホルダー推定器。`RandomResponding` 方策と組み合わせて使用する。
-"""
-struct EmptyEstimator <: AbstractEstimator end
-
-"""
-    update!(e::EmptyEstimator, action::Int, reward::Float64)
-
-何もせず `nothing` を返す。
-"""
-function update!(e::EmptyEstimator, action::Int, reward::Float64)
-    # EmptyEstimator doesn't maintain any state, so nothing to update
-    return nothing
-end
 
 # include("./sample_average.jl")
 # include("./thompson_sampling.jl")
@@ -34,6 +17,7 @@ end
 # include("./sigmoidSampleAverageValue.jl")
 # include("./sigmoidValue.jl")
 include("./estimator/empirical_reward.jl")
+include("./estimator/empty_estimator.jl")
 include("./estimator/ucb1.jl")
 include("./estimator/cognitive_estimator.jl")
 include("./estimator/thompson_sampling.jl")

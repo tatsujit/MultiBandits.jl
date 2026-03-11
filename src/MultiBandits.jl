@@ -44,6 +44,8 @@ export Greedy, SoftmaxPolicy, RandomResponding, SimpleSat
 # 主要関数
 export run!, step!, select_action, update!, sample_reward
 export selection_probabilities, cumulative_regret, moving_average_rewards
+export average_rewards, action_moving_averages
+export cumulative_rewards, find_optimal, average_reward
 
 # 便利コンストラクタ
 export SimpleSatAgent
@@ -58,5 +60,8 @@ include("core/environment.jl")
 include("core/history.jl")
 include("core/system.jl")
 include("core/evaluation.jl")
+
+# TODO: organize the plot functions, and then include them here
+# include("plot/plot.jl") # 
 
 end

@@ -1,3 +1,10 @@
+# TODO noisy win-shift-lose-stay (NWSLS) の実装など
+- これを Policy 側で実装しようとすると、 Policy 行動の履歴を持つ必要があるため、 select_action が副作用を持ち、一貫性を失う
+    - NWSLS では、行動 select_action! にしないといけない
+- だから、 Estimator 側で実装し、 Estimator は W (行動価値) としてそのまま行動選択確率を出力し、確率をそのまま受け取る Policy を作ってやる、というのが良いかもしれない
+    - しかし、 Estimator の側では select_action() の結果は知らないので、通信が難しい？
+    - 実際には、 select_action は pol, est の両方を引数に取っているから大丈夫なのではないかな
+
 # MultiBandits.jl
 
 [![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://tatsujit.github.io/MultiBandits.jl/stable/)
