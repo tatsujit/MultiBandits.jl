@@ -32,7 +32,7 @@ function action_moving_averages(actions::Vector{Int}, n_arms::Int, window_size::
 end
 
 """
-    cumulative_rewards(rewards)
+    cumulative_reward(rewards)
 
     Calculate cumulative rewards over trials.
 
@@ -42,7 +42,7 @@ end
     Returns:
         Vector of cumulative rewards at each trial
 """
-function cumulative_rewards(rewards::Vector{Float64})
+function cumulative_reward(rewards::Vector{Float64})
     cumsum(rewards)
 end
 

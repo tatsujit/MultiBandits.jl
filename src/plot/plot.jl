@@ -134,9 +134,9 @@ function plot_history_performance(history::History;
     fig = Figure(size = figsize)
 
     # Calculate performance metrics
-    cumulative_rewards = calculate_cumulative_rewards(history.rewards)
-    average_rewards = calculate_average_rewards(history.rewards)
-    moving_avg_rewards = calculate_moving_average_rewards(history.rewards, moving_avg_window)
+    cumulative_rewards = cumulative_reward(history.rewards)
+    average_rewards = average_rewards(history.rewards)
+    moving_avg_rewards = moving_average_rewards(history.rewards, moving_avg_window)
 
     # Calculate action selection frequencies
     action_frequencies = calculate_action_moving_averages(history.actions, n_arms, moving_avg_window)
@@ -307,9 +307,9 @@ function plot_history_comparison(histories::Vector{History},
     # Plot for each agent
     for (agent_idx, history) in enumerate(histories)
         # Calculate performance metrics
-        cumulative_rewards = calculate_cumulative_rewards(history.rewards)
-        average_rewards = calculate_average_rewards(history.rewards)
-        moving_avg_rewards = calculate_moving_average_rewards(history.rewards, moving_avg_window)
+        cumulative_rewards = cumulative_reward(history.rewards)
+        average_rewards = average_reward(history.rewards)
+        moving_avg_rewards = moving_average_rewards(history.rewards, moving_avg_window)
 
         # Use pre-calculated regret
         regret = all_regrets[agent_idx]
