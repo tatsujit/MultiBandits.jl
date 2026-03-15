@@ -3,12 +3,14 @@
 struct NoisyWinStayLoseShift <: AbstractPolicy
     # TODO: 直近の選択の履歴を残さなければいけない
     # 一般的には選択の履歴を持つ必要あり
-    probs::Vector{Float64}
-    function RandomResponding(n_arms::Int) # 腕の数だけ与えられたら一様確率で選択
+    previous_action::Int64
+    previous_reward::Float64
+    ϵ::Float64
+    function NoisyWinStayLoseShift(n_arms::Int) # 腕の数だけ与えられたら一様確率で選択
         return new(ones(Float64, n_arms) ./ n_arms)
     end
-    function RandomResponding(probs::Vector{<:Real})
-        return new(Float64.(probs))
+    function NoisyWinStayLoseShift(n_arms::Int, ε::Float64)
+        return new(0, -1.0, ε)
     end
 end
 
