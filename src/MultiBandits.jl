@@ -48,7 +48,7 @@ export average_rewards, action_moving_averages
 export cumulative_reward, find_optimal, average_reward
 
 # 便利コンストラクタ
-export SimpleSatAgent
+export SimpleSatAgent, randomRespondingAgent
 
 # _utils.jl must be loaded first (defines @ic0 macro used in core files)
 include("_utils.jl")

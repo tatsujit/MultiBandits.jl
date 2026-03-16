@@ -32,9 +32,9 @@ end
 """
     Noisy Win-Stay-Lose-Shift 方策では、直近の選択の履歴を持つ必要がある
 """
-function select_action(policy::RandomResponding, estimator::EmptyEstimator; rng::AbstractRNG=Random.default_rng())
-    n_arms = length(policy.probs)
-    return sample(rng, 1:n_arms, Weights(policy.probs))
+function select_action(policy::NoisyWinStayLoseShift, estimator::EmptyEstimator; rng::AbstractRNG=Random.default_rng())
+    probs = selection_probabilities(policy, estimator)
+    return sample(rng, 1:policy.n_arms, Weights(probs))
 end
 
 # rr1 = RandomResponding(5)
