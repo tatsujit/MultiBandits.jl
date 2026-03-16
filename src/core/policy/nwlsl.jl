@@ -6,11 +6,8 @@ struct NoisyWinStayLoseShift <: AbstractPolicy
     previous_action::Int64
     previous_reward::Float64
     ϵ::Float64
-    function NoisyWinStayLoseShift(n_arms::Int) # 腕の数だけ与えられたら一様確率で選択
-        return new(ones(Float64, n_arms) ./ n_arms)
-    end
-    function NoisyWinStayLoseShift(n_arms::Int, ε::Float64)
-        return new(0, -1.0, ε)
+    function NoisyWinStayLoseShift(ε::Float64=0.0) # 腕の数だけ与えられたら一様確率で選択
+        return new(0, NaN, ε)
     end
 end
 
