@@ -1,19 +1,32 @@
 # noisy win-stay-lose-shift policy
+# import Pkg; Pkg.add("Parameters")
+using Parameters: @unpack
 
-struct NoisyWinStayLoseShift <: AbstractPolicy
+mutable struct NoisyWinStayLoseShift <: AbstractPolicy
     # TODO: 直近の選択の履歴を残さなければいけない
     # 一般的には選択の履歴を持つ必要あり
+    n_arms::Int
     previous_action::Int64
     previous_reward::Float64
     ϵ::Float64
-    function NoisyWinStayLoseShift(ε::Float64=0.0) # 腕の数だけ与えられたら一様確率で選択
-        return new(0, NaN, ε)
+    function NoisyWinStayLoseShift(n_arms::Int, ε::Float64=0.0) # 腕の数だけ与えられたら一様確率で選択
+        return new(n_arms, 0, NaN, ε)
     end
 end
 
 # function selection_probabilities(policy::RandomResponding, estimator::AbstractActionValueEstimator)
-function selection_probabilities(policy::RandomResponding, estimator::EmptyEstimator)
-    return policy.probs
+function selection_probabilities(policy::NoisyWinStayLoseShift, estimator::AbstractEstimator)
+    @unpack n_arms, previous_action, previous_reward, ϵ = policy
+    probs = zeros(n_arms)
+    randomness = ϵ / n_arms
+    if previous_reward == 1.0
+        probs[previous_action] = 1 - randomness
+    elseif previous_reward == 0.0
+        probs[previous_action] = randomness
+    end
+    probs = [randomness for _ in 1:n_arms]
+    probs[previous_action] += 1 - ϵ
+    return probs
 end
 
 """
