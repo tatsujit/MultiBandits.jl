@@ -20,7 +20,11 @@ function selection_probabilities(policy::NoisyWinStayLoseShift, estimator::Abstr
     K = n_arms
     probs = zeros(n_arms)   
     randomness = ϵ / K 
-    if previous_reward == 1.0
+    if previous_action == 0
+        for a in 1:K
+            probs[a] = 1/K
+        end
+    elseif previous_reward == 1.0
         for a in 1:K
             if a == previous_action
                 probs[a] = 1 - (K-1)*randomness
