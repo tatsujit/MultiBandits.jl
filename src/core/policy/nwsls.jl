@@ -17,15 +17,27 @@ end
 # function selection_probabilities(policy::RandomResponding, estimator::AbstractActionValueEstimator)
 function selection_probabilities(policy::NoisyWinStayLoseShift, estimator::AbstractEstimator)
     @unpack n_arms, previous_action, previous_reward, ϵ = policy
-    probs = zeros(n_arms)
-    randomness = ϵ / n_arms
+    K = n_arms
+    probs = zeros(n_arms)   
+    randomness = ϵ / K 
     if previous_reward == 1.0
-        probs[previous_action] = 1 - randomness
+        for a in 1:K
+            if a == previous_action
+                probs[a] = 1 - (K-1)*randomness
+            else
+                probs[a] = randomness
+            end
+        end
     elseif previous_reward == 0.0
-        probs[previous_action] = randomness
+        for a in 1:K
+            if a == previous_action
+                probs[a] = randomness
+            else
+                probs[a] = (1 - randomness)/(K-1)
+            end
+        end
     end
-    probs = [randomness for _ in 1:n_arms]
-    probs[previous_action] += 1 - ϵ
+    @assert sum(probs) == 1.0
     return probs
 end
 
