@@ -15,7 +15,7 @@ mutable struct NoisyWinStayLoseShift <: AbstractPolicy
 end
 
 # function selection_probabilities(policy::RandomResponding, estimator::AbstractActionValueEstimator)
-function selection_probabilities(policy::NoisyWinStayLoseShift, estimator::AbstractEstimator)
+function selection_probabilities(policy::NoisyWinStayLoseShift, estimator::AbstractEstimator; verbose::Bool=false)
     @unpack n_arms, previous_action, previous_reward, ϵ = policy
     K = n_arms
     probs = zeros(n_arms)   
@@ -36,6 +36,9 @@ function selection_probabilities(policy::NoisyWinStayLoseShift, estimator::Abstr
                 probs[a] = (1 - randomness)/(K-1)
             end
         end
+    end
+    if verbose
+        @show probs, sum(probs), previous_action, previous_reward, ϵ
     end
     @assert abs(sum(probs) - 1.0) < 1e-8
     return probs
