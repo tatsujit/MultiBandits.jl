@@ -41,12 +41,16 @@ function selection_probabilities(policy::NoisyWinStayLoseShift, estimator::Abstr
     return probs
 end
 
+
 """
     Noisy Win-Stay-Lose-Shift 方策では、直近の選択の履歴を持つ必要がある
 """
 function select_action(policy::NoisyWinStayLoseShift, estimator::EmptyEstimator; rng::AbstractRNG=Random.default_rng())
     probs = selection_probabilities(policy, estimator)
-    return sample(rng, 1:policy.n_arms, Weights(probs))
+    action = sample(rng, 1:policy.n_arms, Weights(probs))
+    policy.previous_action = action
+    policy.previous_reward = estimator.rewards[action]
+    return action
 end
 
 # rr1 = RandomResponding(5)
