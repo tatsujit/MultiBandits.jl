@@ -16,7 +16,8 @@ end
 
 # function selection_probabilities(policy::RandomResponding, estimator::AbstractActionValueEstimator)
 function selection_probabilities(policy::NoisyWinStayLoseShift, estimator::AbstractEstimator; verbose::Bool=false)
-    @unpack n_arms, previous_action, previous_reward, ϵ = policy
+    @unpack n_arms, previous_action, ϵ = policy
+    previous_reward = estimator.previous_reward # ここでズレる。こうしないほうが良いかもしれない。
     K = n_arms
     probs = zeros(n_arms)   
     randomness = ϵ / K 
@@ -57,7 +58,7 @@ end
 """
     Noisy Win-Stay-Lose-Shift 方策では、直近の選択の履歴を持つ必要がある
 """
-function select_action(policy::NoisyWinStayLoseShift, estimator::EmptyEstimator; rng::AbstractRNG=Random.default_rng())
+function select_action(policy::NoisyWinStayLoseShift, estimator::RecordingEstimator; rng::AbstractRNG=Random.default_rng())
     probs = selection_probabilities(policy, estimator)
     action = sample(rng, 1:policy.n_arms, Weights(probs))
     policy.previous_action = estimator.previpous_action
