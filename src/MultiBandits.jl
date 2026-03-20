@@ -39,7 +39,7 @@ export ThompsonSampling, ThompsonSamplingN, ThompsonSamplingNU
 export UCB1, STEP, RS, CognitiveEstimator
 
 # 方策
-export Greedy, SoftmaxPolicy, RandomResponding, SimpleSat
+export Greedy, SoftmaxPolicy, RandomResponding, SimpleSat, NoisyWinStayLoseShift
 
 # 主要関数
 export run!, step!, select_action, update!, sample_reward
