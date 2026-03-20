@@ -15,7 +15,7 @@ mutable struct NoisyWinStayLoseShift <: AbstractPolicy
 end
 
 # function selection_probabilities(policy::RandomResponding, estimator::AbstractActionValueEstimator)
-function selection_probabilities(policy::NoisyWinStayLoseShift, estimator::AbstractEstimator; verbose::Bool=false)
+function selection_probabilities(policy::NoisyWinStayLoseShift, estimator::RecordingEstimator; verbose::Bool=false)
     @unpack n_arms, previous_action, ϵ = policy
     previous_reward = estimator.previous_reward # ここでズレる。こうしないほうが良いかもしれない。
     K = n_arms
