@@ -20,10 +20,13 @@ function selection_probabilities(policy::NoisyWinStayLoseShift, estimator::Abstr
     K = n_arms
     probs = zeros(n_arms)   
     randomness = ϵ / K 
+    # at the beginning, all arms are selected with equal probability
     if previous_action == 0
         for a in 1:K
             probs[a] = 1/K
         end
+    # when the previous action was a win, the probability of the previous action is
+    # 1 - (K-1)*randomness, and the other arms are selected with probability randomness
     elseif previous_reward == 1.0
         for a in 1:K
             if a == previous_action
@@ -32,6 +35,8 @@ function selection_probabilities(policy::NoisyWinStayLoseShift, estimator::Abstr
                 probs[a] = randomness
             end
         end
+    # when the previous action was a lose, the probability of the previous action is randomness, 
+    # and the other arms are selected with probability (1 - randomness)/(K-1)
     elseif previous_reward == 0.0
         for a in 1:K
             if a == previous_action
@@ -55,9 +60,9 @@ end
 function select_action(policy::NoisyWinStayLoseShift, estimator::EmptyEstimator; rng::AbstractRNG=Random.default_rng())
     probs = selection_probabilities(policy, estimator)
     action = sample(rng, 1:policy.n_arms, Weights(probs))
-    policy.previous_action = action
-    policy.previous_reward = estimator.rewards[action]
-    return action
+    policy.previous_action = estimator.previpous_action
+    policy.previous_reward = NaN # to be updated in update!(RecordingEstimator)
+    return action    
 end
 
 # rr1 = RandomResponding(5)
