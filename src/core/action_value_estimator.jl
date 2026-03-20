@@ -18,6 +18,7 @@ abstract type AbstractEstimator end
 # include("./sigmoidValue.jl")
 include("./estimator/empirical_reward.jl")
 include("./estimator/empty_estimator.jl")
+include("./estimator/recording_estimator.jl")
 include("./estimator/ucb1.jl")
 include("./estimator/cognitive_estimator.jl")
 include("./estimator/thompson_sampling.jl")

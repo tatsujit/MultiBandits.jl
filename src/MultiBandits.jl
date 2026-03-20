@@ -34,7 +34,7 @@ export Agent, System, Environment, NonStationaryEnvironment
 export History, EstimatorHistory, LAHistory
 
 # 推定器
-export EmptyEstimator, EmpiricalReward
+export EmptyEstimator, RecordingEstimator, EmpiricalReward
 export ThompsonSampling, ThompsonSamplingN, ThompsonSamplingNU
 export UCB1, STEP, RS, CognitiveEstimator
 
