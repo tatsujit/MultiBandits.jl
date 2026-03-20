@@ -4,11 +4,10 @@
 何も推定しないが action, reward は覚えておく推定器。`NoisyWinStayLoseShift` 方策と組み合わせて使用する。
 """
 mutable struct RecordingEstimator <: AbstractEstimator
-    n_arms::Int
-    previous_actions::Int
+    previous_action::Int
     previous_reward::Float64
-    function RecordingEstimator(n_arms::Int)
-        return new(n_arms, 0, NaN)
+    function RecordingEstimator()
+        return new(0, NaN)
     end
 end
 
