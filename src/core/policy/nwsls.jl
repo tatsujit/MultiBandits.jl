@@ -61,7 +61,7 @@ end
 function select_action(policy::NoisyWinStayLoseShift, estimator::RecordingEstimator; rng::AbstractRNG=Random.default_rng())
     probs = selection_probabilities(policy, estimator)
     action = sample(rng, 1:policy.n_arms, Weights(probs))
-    policy.previous_action = estimator.previpous_action
+    policy.previous_action = estimator.previous_action
     policy.previous_reward = NaN # to be updated in update!(RecordingEstimator)
     return action    
 end
