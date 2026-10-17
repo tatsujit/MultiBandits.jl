@@ -1,7 +1,7 @@
 name = "MultiBandits"
 uuid = "9bbc0396-bcd6-4171-82a6-9cd47f4ceb16"
-authors = ["Tatsuji Takahashi <tatsujit.takahashi@gmail.com> and contributors"]
 version = "0.1.0"
+authors = ["Tatsuji Takahashi <tatsujit.takahashi@gmail.com> and contributors"]
 
 [deps]
 Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
@@ -24,6 +24,7 @@ MultiBanditsMakieExt = "CairoMakie"
 MultiBanditsYAMLExt = "YAML"
 
 [compat]
+Statistics = "1"
 julia = "1.10.11"
 
 [extras]
